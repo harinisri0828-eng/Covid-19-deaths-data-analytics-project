@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8001';
+const baseURL = import.meta.env.VITE_API_BASE_URL || 'https://covid-19-deaths-data-analytics-project.onrender.com';
 
 export const apiClient = axios.create({
   baseURL,
