@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Environment Variables (Keep .env.example tracked)
+.env
+.env.local
+!.env.example
+
+# Local SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+covid_analytics.db
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

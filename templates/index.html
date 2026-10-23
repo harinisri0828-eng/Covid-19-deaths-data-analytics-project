@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>COVID-19 Data Analysis System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <div class="header-content">
+
+        <div>
+
+            <h1>
+                COVID-19 Data Analysis System
+            </h1>
+
+            <p>
+                Interactive Weekly Excess Mortality Dashboard
+            </p>
+
+        </div>
+
+        <div class="header-badge">
+            DATA ANALYTICS
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="container">
+
+
+<!-- =========================================================
+     FILTER PANEL
+========================================================= -->
+
+<section class="filter-card">
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                Dashboard Controls
+            </h2>
+
+            <p>
+                Change the filters to perform your own analysis.
+            </p>
+
+        </div>
+
+        <button id="resetBtn"
+                class="secondary-btn">
+
+            Reset Filters
+
+        </button>
+
+    </div>
+
+
+    <div class="filter-grid">
+
+
+        <!-- COUNTRY -->
+
+        <div class="filter-item">
+
+            <label for="countrySelect">
+                Country
+            </label>
+
+            <select id="countrySelect">
+
+                <option value="All">
+                    All Countries
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- YEAR -->
+
+        <div class="filter-item">
+
+            <label for="yearSelect">
+                Year
+            </label>
+
+            <select id="yearSelect">
+
+                <option value="All">
+                    All Years
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- START DATE -->
+
+        <div class="filter-item">
+
+            <label for="startDate">
+                Start Date
+            </label>
+
+            <input type="date"
+                   id="startDate">
+
+        </div>
+
+
+        <!-- END DATE -->
+
+        <div class="filter-item">
+
+            <label for="endDate">
+                End Date
+            </label>
+
+            <input type="date"
+                   id="endDate">
+
+        </div>
+
+
+        <!-- CHART TYPE -->
+
+        <div class="filter-item">
+
+            <label for="chartType">
+
+                Chart Type
+
+            </label>
+
+            <select id="chartType">
+
+                <option value="line">
+                    Line Chart
+                </option>
+
+                <option value="bar">
+                    Bar Chart
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- METRIC -->
+
+        <div class="filter-item">
+
+            <label for="metricSelect">
+
+                Main Metric
+
+            </label>
+
+            <select id="metricSelect">
+
+                <option value="deaths">
+                    Total Deaths
+                </option>
+
+                <option value="covid">
+                    COVID Deaths
+                </option>
+
+                <option value="excess">
+                    Excess Deaths
+                </option>
+
+                <option value="excess_rate">
+                    Excess Deaths / 100K
+                </option>
+
+                <option value="covid_rate">
+                    COVID Deaths / 100K
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="filter-actions">
+
+        <button id="applyBtn"
+                class="primary-btn">
+
+            Apply Analysis
+
+        </button>
+
+        <button id="downloadBtn"
+                class="download-btn">
+
+            Download Filtered CSV
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     DATASET OVERVIEW
+========================================================= -->
+
+<section class="overview-bar">
+
+    <div>
+
+        <span>
+            Dataset Records
+        </span>
+
+        <strong id="datasetRecords">
+            -
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Countries
+        </span>
+
+        <strong id="datasetCountries">
+            -
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Missing Values
+        </span>
+
+        <strong id="missingValues">
+            -
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Duplicate Rows
+        </span>
+
+        <strong id="duplicateRows">
+            -
+        </strong>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     STATUS
+========================================================= -->
+
+<div id="statusMessage"
+     class="status-message">
+
+    Loading dashboard...
+
+</div>
+
+
+<!-- =========================================================
+     KPI CARDS
+========================================================= -->
+
+<section class="kpi-grid">
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon">
+            📅
+        </div>
+
+        <div>
+
+            <span>
+                Records
+            </span>
+
+            <strong id="recordCount">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon">
+            💀
+        </div>
+
+        <div>
+
+            <span>
+                Total Deaths
+            </span>
+
+            <strong id="totalDeaths">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon">
+            🦠
+        </div>
+
+        <div>
+
+            <span>
+                COVID Deaths
+            </span>
+
+            <strong id="covidDeaths">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon">
+            📈
+        </div>
+
+        <div>
+
+            <span>
+                Excess Deaths
+            </span>
+
+            <strong id="excessDeaths">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon">
+            👥
+        </div>
+
+        <div>
+
+            <span>
+                Excess / 100K
+            </span>
+
+            <strong id="excessRate">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon">
+            🌍
+        </div>
+
+        <div>
+
+            <span>
+                Population
+            </span>
+
+            <strong id="population">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     INSIGHTS
+========================================================= -->
+
+<section class="insights-card">
+
+    <div>
+
+        <span>
+            Average COVID Deaths / 100K
+        </span>
+
+        <strong id="avgCovidRate">
+            -
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Average Excess Deaths / 100K
+        </span>
+
+        <strong id="avgExcessRate">
+            -
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Highest Weekly Excess Deaths
+        </span>
+
+        <strong id="maxExcess">
+            -
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Peak Week
+        </span>
+
+        <strong id="peakWeek">
+            -
+        </strong>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAIN CHART
+========================================================= -->
+
+<section class="chart-card large">
+
+    <div class="chart-title">
+
+        <div>
+
+            <h2 id="mainChartTitle">
+                Weekly Analysis
+            </h2>
+
+            <p>
+                Interactive trend based on selected filters
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="chart-wrapper">
+
+        <canvas id="mainChart"></canvas>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SECONDARY CHARTS
+========================================================= -->
+
+<section class="two-column">
+
+
+    <div class="chart-card">
+
+        <div class="chart-title">
+
+            <h2>
+                Observed vs Expected Deaths
+            </h2>
+
+        </div>
+
+        <div class="chart-wrapper">
+
+            <canvas id="observedChart"></canvas>
+
+        </div>
+
+    </div>
+
+
+    <div class="chart-card">
+
+        <div class="chart-title">
+
+            <h2>
+                COVID Deaths vs Excess Deaths
+            </h2>
+
+        </div>
+
+        <div class="chart-wrapper">
+
+            <canvas id="comparisonChart"></canvas>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================================================
+     COUNTRY COMPARISON
+========================================================= -->
+
+<section class="chart-card">
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                Country Comparison
+            </h2>
+
+            <p>
+                Countries ranked by average excess deaths per 100K
+            </p>
+
+        </div>
+
+        <select id="comparisonMetric">
+
+            <option value="avg_excess_rate">
+                Excess Deaths / 100K
+            </option>
+
+            <option value="excess_deaths">
+                Total Excess Deaths
+            </option>
+
+            <option value="covid_deaths">
+                COVID Deaths
+            </option>
+
+            <option value="total_deaths">
+                Total Deaths
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="chart-wrapper comparison-height">
+
+        <canvas id="countryComparisonChart"></canvas>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     DATA TABLE
+========================================================= -->
+
+<section class="table-card">
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                Filtered Dataset
+            </h2>
+
+            <p id="tableInfo">
+                -
+            </p>
+
+        </div>
+
+        <div class="table-controls">
+
+            <select id="sortSelect">
+
+                <option value="date">
+                    Sort by Date
+                </option>
+
+                <option value="total_deaths">
+                    Sort by Total Deaths
+                </option>
+
+                <option value="covid_deaths">
+                    Sort by COVID Deaths
+                </option>
+
+                <option value="excess_deaths">
+                    Sort by Excess Deaths
+                </option>
+
+                <option value="excess_deaths_per_100k">
+                    Sort by Excess / 100K
+                </option>
+
+            </select>
+
+
+            <select id="sortOrder">
+
+                <option value="desc">
+                    Descending
+                </option>
+
+                <option value="asc">
+                    Ascending
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Country</th>
+
+                    <th>Year</th>
+
+                    <th>Week</th>
+
+                    <th>Date</th>
+
+                    <th>Total Deaths</th>
+
+                    <th>COVID Deaths</th>
+
+                    <th>Expected</th>
+
+                    <th>Excess</th>
+
+                    <th>Excess / 100K</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="dataTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        <button id="previousBtn">
+            Previous
+        </button>
+
+        <span id="pageNumber">
+            Page 1
+        </span>
+
+        <button id="nextBtn">
+            Next
+        </button>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <p>
+        COVID-19 Data Analysis System
+    </p>
+
+    <span>
+        Interactive Data Analytics Dashboard
+    </span>
+
+</footer>
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+</body>
+
+</html>

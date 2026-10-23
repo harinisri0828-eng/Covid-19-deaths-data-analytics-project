@@ -1,0 +1,347 @@
+{
+  "summary": {
+    "best_model_name": "Random Forest",
+    "best_model_key": "random_forest",
+    "best_r2": 0.6273,
+    "train_samples": 2292,
+    "test_samples": 574,
+    "evaluation_date": "2026-10-22T20:18:35.618972"
+  },
+  "models": [
+    {
+      "name": "Linear Regression",
+      "key": "linear_regression",
+      "r2": 0.3472360090400102,
+      "rmse": 63422.9106372308,
+      "mae": 46167.04197291495,
+      "mape": 6.008991829734705,
+      "latency_ms": 38.9,
+      "residual_std": 58419.30202056748,
+      "is_best": false
+    },
+    {
+      "name": "Ridge",
+      "key": "ridge",
+      "r2": 0.34728683784004755,
+      "rmse": 63420.44131198856,
+      "mae": 46163.69580605398,
+      "mape": 6.006241057275381,
+      "latency_ms": 8.02,
+      "residual_std": 58413.806320963005,
+      "is_best": false
+    },
+    {
+      "name": "Random Forest",
+      "key": "random_forest",
+      "r2": 0.6272537321050236,
+      "rmse": 47926.3909839614,
+      "mae": 29823.55182091575,
+      "mape": 10.012433441867785,
+      "latency_ms": 1150.29,
+      "residual_std": 46707.69301237846,
+      "is_best": true
+    }
+  ],
+  "test_fit_curve": [
+    {
+      "date": "2023-12-02",
+      "actual": 187576.7,
+      "predicted": 79187.3
+    },
+    {
+      "date": "2023-12-02",
+      "actual": 1861.6,
+      "predicted": 1793.1
+    },
+    {
+      "date": "2023-12-03",
+      "actual": 1941.4,
+      "predicted": 106335.1
+    },
+    {
+      "date": "2023-12-03",
+      "actual": 188185.4,
+      "predicted": 185946.7
+    },
+    {
+      "date": "2023-12-04",
+      "actual": 2029.9,
+      "predicted": 82866.7
+    },
+    {
+      "date": "2023-12-04",
+      "actual": 188698.6,
+      "predicted": 187033.9
+    },
+    {
+      "date": "2023-12-05",
+      "actual": 2129.9,
+      "predicted": 70110.2
+    },
+    {
+      "date": "2023-12-05",
+      "actual": 189115.0,
+      "predicted": 178135.1
+    },
+    {
+      "date": "2023-12-06",
+      "actual": 2234.4,
+      "predicted": 2127.0
+    },
+    {
+      "date": "2023-12-06",
+      "actual": 189433.7,
+      "predicted": 186789.9
+    },
+    {
+      "date": "2023-12-07",
+      "actual": 2336.3,
+      "predicted": 66156.2
+    },
+    {
+      "date": "2023-12-07",
+      "actual": 189653.9,
+      "predicted": 186730.7
+    },
+    {
+      "date": "2023-12-08",
+      "actual": 189774.9,
+      "predicted": 71937.6
+    },
+    {
+      "date": "2023-12-08",
+      "actual": 2437.0,
+      "predicted": 2128.9
+    },
+    {
+      "date": "2023-12-09",
+      "actual": 2534.1,
+      "predicted": 56067.7
+    },
+    {
+      "date": "2023-12-09",
+      "actual": 189796.4,
+      "predicted": 187823.4
+    },
+    {
+      "date": "2023-12-10",
+      "actual": 2621.3,
+      "predicted": 67518.2
+    },
+    {
+      "date": "2023-12-10",
+      "actual": 189718.4,
+      "predicted": 187070.8
+    },
+    {
+      "date": "2023-12-11",
+      "actual": 2714.9,
+      "predicted": 71171.7
+    },
+    {
+      "date": "2023-12-11",
+      "actual": 189541.1,
+      "predicted": 180662.0
+    },
+    {
+      "date": "2023-12-12",
+      "actual": 2817.1,
+      "predicted": 2646.8
+    },
+    {
+      "date": "2023-12-12",
+      "actual": 189265.1,
+      "predicted": 187113.4
+    },
+    {
+      "date": "2023-12-13",
+      "actual": 188891.0,
+      "predicted": 65499.9
+    },
+    {
+      "date": "2023-12-13",
+      "actual": 2920.7,
+      "predicted": 2667.7
+    },
+    {
+      "date": "2023-12-14",
+      "actual": 3018.6,
+      "predicted": 90091.6
+    },
+    {
+      "date": "2023-12-14",
+      "actual": 188419.6,
+      "predicted": 187066.8
+    },
+    {
+      "date": "2023-12-15",
+      "actual": 3112.3,
+      "predicted": 91412.5
+    },
+    {
+      "date": "2023-12-15",
+      "actual": 187852.1,
+      "predicted": 187459.5
+    },
+    {
+      "date": "2023-12-16",
+      "actual": 3199.7,
+      "predicted": 75505.3
+    },
+    {
+      "date": "2023-12-16",
+      "actual": 187190.1,
+      "predicted": 184244.1
+    },
+    {
+      "date": "2023-12-17",
+      "actual": 3275.4,
+      "predicted": 3118.9
+    },
+    {
+      "date": "2023-12-17",
+      "actual": 186435.1,
+      "predicted": 185995.8
+    },
+    {
+      "date": "2023-12-18",
+      "actual": 185589.1,
+      "predicted": 87013.0
+    },
+    {
+      "date": "2023-12-18",
+      "actual": 3353.9,
+      "predicted": 3222.2
+    },
+    {
+      "date": "2023-12-19",
+      "actual": 184654.1,
+      "predicted": 66976.7
+    },
+    {
+      "date": "2023-12-19",
+      "actual": 3436.4,
+      "predicted": 3332.9
+    },
+    {
+      "date": "2023-12-20",
+      "actual": 3517.0,
+      "predicted": 42512.7
+    },
+    {
+      "date": "2023-12-20",
+      "actual": 183632.6,
+      "predicted": 185830.1
+    },
+    {
+      "date": "2023-12-21",
+      "actual": 3589.9,
+      "predicted": 72556.4
+    },
+    {
+      "date": "2023-12-21",
+      "actual": 182526.9,
+      "predicted": 177191.0
+    },
+    {
+      "date": "2023-12-22",
+      "actual": 3656.3,
+      "predicted": 3407.3
+    },
+    {
+      "date": "2023-12-22",
+      "actual": 181339.9,
+      "predicted": 177191.0
+    },
+    {
+      "date": "2023-12-23",
+      "actual": 3715.1,
+      "predicted": 3471.6
+    },
+    {
+      "date": "2023-12-23",
+      "actual": 180074.6,
+      "predicted": 183226.8
+    },
+    {
+      "date": "2023-12-24",
+      "actual": 178734.1,
+      "predicted": 80885.5
+    },
+    {
+      "date": "2023-12-24",
+      "actual": 3763.3,
+      "predicted": 3692.0
+    },
+    {
+      "date": "2023-12-25",
+      "actual": 3809.9,
+      "predicted": 38647.5
+    },
+    {
+      "date": "2023-12-25",
+      "actual": 177321.9,
+      "predicted": 179677.8
+    },
+    {
+      "date": "2023-12-26",
+      "actual": 3855.4,
+      "predicted": 84879.0
+    },
+    {
+      "date": "2023-12-26",
+      "actual": 175841.3,
+      "predicted": 177935.8
+    },
+    {
+      "date": "2023-12-27",
+      "actual": 3895.6,
+      "predicted": 84679.9
+    },
+    {
+      "date": "2023-12-27",
+      "actual": 174296.0,
+      "predicted": 169309.1
+    },
+    {
+      "date": "2023-12-28",
+      "actual": 3927.9,
+      "predicted": 3925.8
+    },
+    {
+      "date": "2023-12-28",
+      "actual": 172690.1,
+      "predicted": 176154.8
+    },
+    {
+      "date": "2023-12-29",
+      "actual": 3953.1,
+      "predicted": 103225.3
+    },
+    {
+      "date": "2023-12-29",
+      "actual": 171027.6,
+      "predicted": 173681.0
+    },
+    {
+      "date": "2023-12-30",
+      "actual": 3971.0,
+      "predicted": 97285.8
+    },
+    {
+      "date": "2023-12-30",
+      "actual": 169312.4,
+      "predicted": 172995.3
+    },
+    {
+      "date": "2023-12-31",
+      "actual": 3981.3,
+      "predicted": 92509.2
+    },
+    {
+      "date": "2023-12-31",
+      "actual": 167549.0,
+      "predicted": 171664.0
+    }
+  ]
+}
