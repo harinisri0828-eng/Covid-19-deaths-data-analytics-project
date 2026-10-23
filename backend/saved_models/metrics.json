@@ -5,7 +5,7 @@
     "best_r2": 0.6273,
     "train_samples": 2292,
     "test_samples": 574,
-    "evaluation_date": "2026-10-22T20:18:35.618972"
+    "evaluation_date": "2026-10-23T12:12:40.378355"
   },
   "models": [
     {
@@ -15,7 +15,7 @@
       "rmse": 63422.9106372308,
       "mae": 46167.04197291495,
       "mape": 6.008991829734705,
-      "latency_ms": 38.9,
+      "latency_ms": 38.05,
       "residual_std": 58419.30202056748,
       "is_best": false
     },
@@ -26,7 +26,7 @@
       "rmse": 63420.44131198856,
       "mae": 46163.69580605398,
       "mape": 6.006241057275381,
-      "latency_ms": 8.02,
+      "latency_ms": 2.88,
       "residual_std": 58413.806320963005,
       "is_best": false
     },
@@ -37,7 +37,7 @@
       "rmse": 47926.3909839614,
       "mae": 29823.55182091575,
       "mape": 10.012433441867785,
-      "latency_ms": 1150.29,
+      "latency_ms": 1149.13,
       "residual_std": 46707.69301237846,
       "is_best": true
     }

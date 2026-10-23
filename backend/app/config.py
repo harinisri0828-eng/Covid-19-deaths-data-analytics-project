@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     )
     
     # CORS Settings
-    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174,http://localhost:3000"
+    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174,http://localhost:3000,https://covid-analytics-frontend.onrender.com"
     CORS_ORIGIN_REGEX: Optional[str] = r"https://.*\.onrender\.com|https://.*\.vercel\.app"
     
     # Data Paths
